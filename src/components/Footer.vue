@@ -1,8 +1,7 @@
 <template>
   <footer class="footer">
     <div>
-      This Application is made by
-      <span class="names">○○○, KUSABA and ○○○</span>.
+      <span class="names">Maika, KUSABA and ○○○</span>
     </div>
     <small
       >The Application is created as a part of the GeekSalon WebExpert

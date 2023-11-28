@@ -1,36 +1,55 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>ホッキョクグマの肌は何色でしょう？</h2>
+    <h2>Q. {{ "ホッキョクグマの肌は何色でしょう？" }}</h2>
     <img
-      id="quiz-image"
+      class="quiz-image"
       src="https://via.placeholder.com/300x300"
-      alt="ホッキョクグマの肌は何色でしょうか？"
+      alt="ホッキョクグマの肌は何色でしょう？"
     />
     <div class="container">
-      <button id="quizchoice1">白</button>
-      <button id="quizchoice2">黒</button>
-      <button id="quizchoice3">ベージュ</button>
+      <button>
+        {{ "白" }}
+      </button>
+      <button>
+        {{ "黒" }}
+      </button>
+      <button>
+        {{ "ベージュ" }}
+      </button>
     </div>
-    <div id="quizresult"></div>
+    <div>{{ "黒" }}</div>
   </div>
 </template>
 
 <script>
-const quizchoice1 = document.getElementById("quizchoice1")
-const quizchoice2 = document.getElementById("quizchoice2")
-const quizchoice3 = document.getElementById("quizchoice3")
-const quizresult = document.getElementById("quizresult")
-
-quizchoice1.onclick = function () {
-  quizresult.textContent = "違います！"
-}
-quizchoice2.onclick = function () {
-  quizresult.textContent = "正解です！"
-}
-quizchoice3.onclick = function () {
-  quizresult.textContent = "違います！"
-}
+data() {
+    return {
+        quiz: {
+        text: "ホッキョクグマの肌は何色でしょう",
+        image: "sirokuma.jpg",
+        choices: [
+          {
+            text: "白",
+            isCorrect: false,
+            feedback:
+              "残念！白ではありません！",
+          },
+          {
+            text: "黒",
+            isCorrect: true,
+            feedback:
+              "正解！本来の肌の色は黒く透明の毛が生えていますが光の影響で白くみえています。",
+          },
+          {
+            text: "ベージュ",
+            isCorrect: false,
+            feedback: "残念！ベージュではありません！",
+          },
+        ],
+      },
+    }
+  }
 </script>
 
 <style>

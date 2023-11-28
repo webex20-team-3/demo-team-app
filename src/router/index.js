@@ -1,29 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
-import MemoApp from "@/views/MemoApp.vue"
-import QuizApp from "@/views/QuizApp.vue"
-import PaletteApp from "@/views/PaletteApp.vue"
+import Memo from "../views/MemoApp.vue"
+import Palette from "../views/PaletteApp.vue"
+import Quiz from "../views/QuizApp.vue"
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: HomeView,
   },
   {
-    path: "/memo",
-    name: "MemoApp",
-    component: MemoApp,
+    path: "/Memo",
+    name: "Memo",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: Memo,
   },
   {
-    path: "/quiz",
-    name: "QuizApp",
-    component: QuizApp,
+    path: "/Quiz",
+    name: "Quiz",
+    component: Quiz,
   },
   {
-    path: "/palette",
-    name: "PaletteApp",
-    component: PaletteApp,
+    path: "/Palette",
+    name: "Palette",
+    component: Palette,
   },
 ]
 

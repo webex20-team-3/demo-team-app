@@ -1,33 +1,32 @@
 <template>
-  <Header />
-  <main class="main-view">
-    <router-view />
-  </main>
-  <Footer />
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/Quiz">Quiz</router-link>
+    <router-link to="/Palette">Palette</router-link>
+    <router-link to="/Memo">Memo</router-link>
+  </nav>
+  <router-view />
 </template>
 
-<script>
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-
-export default {
-  components: {
-    Header,
-    Footer,
-  },
-}
-</script>
-
-<style scoped>
-.main-view {
-  padding: 0 2rem;
-  width: 100%;
-}
-</style>
-
 <style>
-body {
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
   color: #2c3e50;
-  overflow-x: hidden;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

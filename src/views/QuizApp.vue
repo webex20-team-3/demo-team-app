@@ -1,29 +1,36 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>Q. {{ "クイズタイトル" }}</h2>
+    <h2>ホッキョクグマの肌は何色でしょう？</h2>
     <img
-      class="quiz-image"
+      id="quiz-image"
       src="https://via.placeholder.com/300x300"
-      alt="クイズタイトル"
+      alt="ホッキョクグマの肌は何色でしょうか？"
     />
     <div class="container">
-      <button>
-        {{ "選択肢1" }}
-      </button>
-      <button>
-        {{ "選択肢2" }}
-      </button>
-      <button>
-        {{ "選択肢3" }}
-      </button>
+      <button id="quizchoice1">白</button>
+      <button id="quizchoice2">黒</button>
+      <button id="quizchoice3">ベージュ</button>
     </div>
-    <div>{{ "答え" }}</div>
+    <div id="quizresult"></div>
   </div>
 </template>
 
 <script>
-export default {}
+const quizchoice1 = document.getElementById("quizchoice1")
+const quizchoice2 = document.getElementById("quizchoice2")
+const quizchoice3 = document.getElementById("quizchoice3")
+const quizresult = document.getElementById("quizresult")
+
+quizchoice1.onclick = function () {
+  quizresult.textContent = "違います！"
+}
+quizchoice2.onclick = function () {
+  quizresult.textContent = "正解です！"
+}
+quizchoice3.onclick = function () {
+  quizresult.textContent = "違います！"
+}
 </script>
 
 <style>

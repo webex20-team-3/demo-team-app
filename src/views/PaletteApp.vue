@@ -37,7 +37,7 @@ export default {
       this.red = e.offsetX
       this.green = e.offsetX
     },
-    pinkColor() {
+    pickColor() {
       const newColor = {
         red: this.red,
         green: this.green,

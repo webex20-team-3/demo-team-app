@@ -1,11 +1,14 @@
 <template>
   <h1>Vue メモ</h1>
   <div class="memo-list">
-    <ul class="memo-list__container" v-for="memo in memos" v-bind:key="memo">
-      <li class="memo">
-        <input type="checkbox" value="true" v-model="checked" />
-        <div class="memo_text" v-bind:class="{ 'memo__text--done': checked }">
-          {{ memo }}
+    <ul class="memo-list__container">
+      <li v-for="(memo, index) in memos" v-bind:key="index" class="memo">
+        <input type="checkbox" v-model="memo.checked" />
+        <div v-if="memo.checked" class="memo_text memo__text--done">
+          {{ memo.text }}
+        </div>
+        <div v-else class="memo_text">
+          {{ memo.text }}
         </div>
         <button @click="deleteMemo(index)" class="memo__delete">削除</button>
       </li>
@@ -23,21 +26,22 @@ export default {
     return {
       inputText: "",
       memos: [],
-      condition: "memo_text",
-      checked: [],
     }
   },
   methods: {
-    add: function () {
-      console.log(this.inputText)
-      this.createMemo()
-      this.inputText = ""
-    },
     createMemo: function () {
-      this.memos.push(this.inputText)
+      const memo = { text: this.inputText, checked: false }
+      this.memos.push(memo)
     },
     deleteMemo: function (index) {
       this.memos.splice(index, 1)
+    },
+    add: function () {
+      if (this.inputText) {
+        this.createMemo()
+        console.log(this.memos.text)
+        this.inputText = ""
+      }
     },
   },
 }

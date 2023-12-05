@@ -2,37 +2,49 @@
   <h1>Vue メモ</h1>
   <div class="memo-list">
     <ul class="memo-list__container">
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
+      <li v-for="(memo, index) in memos" v-bind:key="index" class="memo">
+        <input type="checkbox" v-model="memo.checked" />
+        <div v-if="memo.checked" class="memo_text memo__text--done">
+          {{ memo.text }}
         </div>
-        <div class="memo__text">ひき肉を300g買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
+        <div v-else class="memo_text">
+          {{ memo.text }}
         </div>
-        <div class="memo__text">ホウレンソウを1束買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
-        </div>
-        <div class="memo__text">ピーマンを2個買う</div>
-        <button class="memo__delete">削除</button>
+        <button @click="deleteMemo(index)" class="memo__delete">削除</button>
       </li>
     </ul>
     <div class="add-memo-field">
-      <input class="add-memo-field__input" type="text" />
-      <button class="add-memo-field__button">追加</button>
+      <input type="text" class="add-memo-field__input" v-model="inputText" />
+      <button class="add-memo-field__button" @click="add">追加</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      inputText: "",
+      memos: [],
+    }
+  },
+  methods: {
+    createMemo: function () {
+      const memo = { text: this.inputText, checked: false }
+      this.memos.push(memo)
+    },
+    deleteMemo: function (index) {
+      this.memos.splice(index, 1)
+    },
+    add: function () {
+      if (this.inputText) {
+        this.createMemo()
+        console.log(this.memos.text)
+        this.inputText = ""
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>
@@ -46,11 +58,11 @@ export default {}
   margin-left: auto;
   margin-right: auto;
 }
-
+/* container */
 .memo-list__container {
   padding: 0;
 }
-
+/* card */
 .memo {
   display: flex;
   justify-content: space-between;
@@ -63,7 +75,6 @@ export default {}
   color: white;
   background-color: #b23b61;
 }
-
 .memo__text {
   margin-left: 2rem;
   text-align: left;
@@ -72,7 +83,6 @@ export default {}
 .memo__text--done {
   text-decoration-line: line-through;
 }
-
 .memo__delete {
   margin-left: 1rem;
   padding: 0.5rem 0.5rem;

@@ -8,13 +8,27 @@
       alt="ホッキョクグマの肌は何色でしょう？"
     />
     <div class="container">
-      <button>
+      <button
+        v-for="(choice, i) in quiz.choices"
+        v-bind:key="i"
+        v-on:click="choiced(choice)"
+      >
         {{ "白" }}
       </button>
-      <button>
+      <button
+        v-for="(choice, i) in quiz.choices"
+        v-bind:key="i"
+        v-on:click="choiced(choice)"
+      >
+        >
         {{ "黒" }}
       </button>
-      <button>
+      <button
+        v-for="(choice, i) in quiz.choices"
+        v-bind:key="i"
+        v-on:click="choiced(choice)"
+      >
+        >
         {{ "ベージュ" }}
       </button>
     </div>
@@ -50,6 +64,14 @@ data() {
       },
     }
   }
+  methods: {
+    choiced(choice) {
+      this.feedback = choice.feedback
+
+      if (choice.isCorrect) {
+      }
+    },
+  },
 </script>
 
 <style>
